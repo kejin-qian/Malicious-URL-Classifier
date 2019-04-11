@@ -2,7 +2,7 @@
 
 * **Developer**: [Kejin Qian](https://github.com/kejin-qian)
 * **QA**: [Sophie Du](https://github.com/chuandu2)
-
+----------------------------------------------------------------
 <!-- toc -->
 
 - [Project Charter](#project-charter)
