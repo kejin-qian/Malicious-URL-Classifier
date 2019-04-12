@@ -77,7 +77,7 @@ A set of machine learning predictive models will be built, a 10-fold cross valid
 
 - **Story 2**: Final Model Selection: Classification accuracy, F-score and AUC are possible machine learning performance metrics for the classifiers built above. To optimize precision(how many predicted malicious urls are actually malicious) and recall(how many malicious urls identified correctly by model), F-score and AUC will be the primary performance metric. The final best model selected will be the one with the highest F-score and the highest AUC. (4 points)
 
-- **Story 3**: Build a stacked predictive model using optimal models found in S1 to improve the classifier’s predictive power. Compare the performance metric of the stacked model with the final best model selected in S2 and choose the winner.(4 points)
+- **Story 3**: Build a stacked predictive model using optimal models found in S1 to improve the classifier’s predictive power. Compare the performance metric of the stacked model with the final best model selected in S2 and choose the winner.
 
 
 ### **Theme3**:
@@ -104,9 +104,9 @@ Build a dynamic web application by re-train the model regularly using a dynamic 
 
 - **Story 1**: Build a dynamic database which can be initialized using training set of the malicious and secure URLs and updated in real time using user input and predicted outcome. The final best model will be re-trained using the updated URL database in a timely manner to improve classification performance and accuracy.(8 points)
     
-- **Story 2**: Interactive interface to preview the webpage within the web app if the webpage’s URL is classified as Secure.(2 points)
+- **Story 2**: Interactive interface to preview the webpage within the web app if the webpage’s URL is classified as Secure.
 
-- **Story 3**: Output visualizations of features extracted from the URL provided by the user against the distributions of that feature of all the malicious and secure URLs stored in database, This can also give users intuitions on why the URLs they provided are identified as Malicious/Secure.(4 points)
+- **Story 3**: Output visualizations of features extracted from the URL provided by the user against the distributions of that feature of all the malicious and secure URLs stored in database, This can also give users intuitions on why the URLs they provided are identified as Malicious/Secure.
 
 ### Project Backlog
 1. ***Theme1.Epic1.Story1***: Collect URL lists (1 point) - **Planned**
@@ -125,9 +125,9 @@ Build a dynamic web application by re-train the model regularly using a dynamic 
 14. ***Theme3.Epic2.Story1***: Dynamic URL Database (8 points)
 
 ### **Project Icebox**
-1. ***Theme2.Epic1.Story3***: Stacked Model Building (4 points)
-2. ***Theme3.Epic2.Story2***: Secure Webpage Preview (2 points)
-3. ***Theme3.Epic2.Story3***: Output Visualizations to Support Classification Decision (4 points)
+1. ***Theme2.Epic1.Story3***: Stacked Model Building
+2. ***Theme3.Epic2.Story2***: Secure Webpage Preview
+3. ***Theme3.Epic2.Story3***: Output Visualizations to Support Classification Decision
 
 
 
