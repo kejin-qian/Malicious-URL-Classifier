@@ -6,7 +6,12 @@
 <!-- toc -->
 
 - [Project Charter](#project-charter)
-- [Project Backlog](#project-backlog)
+	* [Mission](#mission)
+	* [Vision](#vision)
+	* [Success Criteria](#success-criteria)
+- [Planned Work](#planned-work)
+* [Backlog](#backlog)
+* [Icebox](#icebox)
 
 <!-- tocstop -->
 
@@ -27,7 +32,7 @@ Successfully build a Machine Learning predictive model that dynamically classifi
 Collect 100 URLs from users and add them into URL database with corresponding classification results. Re-train the predictive model in a timely basis using updated database.
 
 
-## Project Backlog
+## Planned Work
 
 
 ### **Theme1**: 
@@ -102,14 +107,14 @@ Build a dynamic web application by re-train the model regularly using a dynamic 
 
 - **Story 3**: Output visualizations of features extracted from the URL provided by the user against the distributions of that feature of all the malicious and secure URLs stored in database, This can also give users intuitions on why the URLs they provided are identified as Malicious/Secure.(4 points)
 
-### **Backlog**
-1. ***Theme1.Epic1.Story1***: Collect URL lists (1 point) - Planned
-2. ***Theme1.Epic1.Story2***: Quality check on URL lists (2 points) - Planned
-3. ***Theme1.Epic2.Story1***: URL stings' Feature Exploration (4 points) - Planned
-4. ***Theme1.Epic2.Story2***: Host-based feature from WHOIS Server (4 points) - Planned
-5. ***Theme1.Epic2.Story3***: Visualizations on features' distributions for Malicious&Secure URLs (2 points) - Planned
-6. ***Theme1.Epic3.Story1***: Exploratory Data Analysis (4 points) - Planned For Next Two Weeks
-7. ***Theme2.Epic1.Story1***: Classification Model Building and Hyper Parameter Selection (8 points) - Planned
+### Backlog
+1. ***Theme1.Epic1.Story1***: Collect URL lists (1 point) - **Planned**
+2. ***Theme1.Epic1.Story2***: Quality check on URL lists (2 points) - **Planned**
+3. ***Theme1.Epic2.Story1***: URL stings' Feature Exploration (4 points) - **Planned**
+4. ***Theme1.Epic2.Story2***: Host-based feature from WHOIS Server (4 points) - **Planned**
+5. ***Theme1.Epic2.Story3***: Visualizations on features' distributions for Malicious&Secure URLs (2 points) - **Planned**
+6. ***Theme1.Epic3.Story1***: Exploratory Data Analysis (4 points) - Planned
+7. ***Theme2.Epic1.Story1***: Classification Model Building and Hyper Parameter Selection (8 points) - **Planned**
 8. ***Theme2.Epic1.Story2***: Final Model Selection (4 points)
 9. ***Theme3.Epic1.Story1***: Front End Design (4 points)
 10. ******Theme3.Epic1.Story2***: Feature Importance Presentaiton (1 point)
