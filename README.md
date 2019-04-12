@@ -10,8 +10,8 @@
 	* [Mission](#mission)
 	* [Success Criteria](#success-criteria)
 - [Planned Work](#planned-work)
-* [Project Backlog](#project-backlog)
-* [Project Icebox](#project-icebox)
+	* [Project Backlog](#project-backlog)
+	* [Project Icebox](#project-icebox)
 
 <!-- tocstop -->
 
