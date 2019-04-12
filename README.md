@@ -19,17 +19,18 @@
 
 ### **Vision**:
 
-Increase Internet security by spotting malicious websites based on URL strings provided by users.
+Increase Internet security and improve the efficiency of malice detection by spotting malicious websites based on URL strings provided by users without downloading the webpage or crawling page contents.
 
 ### **Mission**:
 
-To improve the efficiency of malice detection by enabling users to identify malicious URLs prior to downloading the webpage or crawling page contents. This goal will be achieved by building a Machine-Learning predictive model using features extracted from the URL strings and information about the host based on features queried from WHOIS server. User input URLs will be added to internal database and predictive model will be re-trained in a timely basis using updated database to improve prediction accuracy.
+Classify URLs as Malicious or Secure using Machine-Learning predictive models based on features extracted primarily from the URL strings and Host-based features queried from WHOIS Server. User input URLs will be added to an internal URL database and the predictive model will be re-trained in a timely basis using updated database to improve prediction accuracy.
 
 ### **Success criteria**:
 
-Successfully build a Machine Learning predictive model that dynamically classifies user-provided URL string(s) into Malicious/Secure class(es) with a F-measure greater than 0.85 and AUC higher than 0.7. 
+Successfully build a Machine Learning predictive model that dynamically classifies user-provided URL string(s) into Malicious/Secure class(es) with a F-score greater than 0.85 and AUC higher than 0.7. 
 
-Collect 100 URLs from users and add them into URL database with corresponding classification results. Re-train the predictive model in a timely basis using updated database.
+Collect 100 URLs from users and add them into URL database with the corresponding classification results. 
+Re-train the predictive model in a timely basis using updated database and achieve better performance metrics.
 
 
 ## Planned Work
@@ -66,15 +67,15 @@ Features collected from previous steps will be merged into a final dataset. Expl
 
 
 ### **Theme2**:
-Obtain reliable Machine Learning predictive model of classifing single or multiple URL(s) provided by user into Malicious or Secure URL(s) based on features extracted primarily from the URL string(s). The reliability of the model is evaluated based on the performance metrics F-measure and AUC.
+Obtain reliable Machine Learning predictive model of classifing single or multiple URL(s) provided by user into Malicious or Secure URL(s) based on features extracted primarily from the URL string(s). The reliability of the model is evaluated based on the performance metrics F-score and AUC.
 
 **Epic1 - Malicious/Secure URL classification**
 
 A set of machine learning predictive models will be built, a 10-fold cross validation will be applied to each model to evaluate model performance. Final model selection will be made based on the results.
 
-- **Story 1**: Build, train, tune(via Cross Validate) each potential candidates of classification algorithms. Potential algorithms are: Decision Trees, Random Forest, AdaBoost, GradientBoosting, GaussianNB and Logistic Regression. For each algorithm, select the optimal model using the best set of parameters found, report cross validation classification accuracy, F-measure and AUC. (8 points)
+- **Story 1**: Build, train, tune(via Cross Validate) each potential candidates of classification algorithms. Potential algorithms are: Decision Trees, Random Forest, AdaBoost, GradientBoosting, GaussianNB and Logistic Regression. For each algorithm, select the optimal model using the best set of parameters found, report cross validation classification accuracy, F-score and AUC. (8 points)
 
-- **Story 2**: Final Model Selection: Classification accuracy, F-measure and AUC are possible machine learning performance metrics for the classifiers built above. To optimize precision(how many predicted malicious urls are actually malicious) and recall(how many malicious urls identified correctly by model), F-measure and AUC will be the primary performance metric. The final best model selected will be the one with the highest F-measure and the highest AUC. (4 points)
+- **Story 2**: Final Model Selection: Classification accuracy, F-score and AUC are possible machine learning performance metrics for the classifiers built above. To optimize precision(how many predicted malicious urls are actually malicious) and recall(how many malicious urls identified correctly by model), F-score and AUC will be the primary performance metric. The final best model selected will be the one with the highest F-score and the highest AUC. (4 points)
 
 - **Story 3**: Build a stacked predictive model using optimal models found in S1 to improve the classifier’s predictive power. Compare the performance metric of the stacked model with the final best model selected in S2 and choose the winner.(4 points)
 
