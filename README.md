@@ -6,12 +6,12 @@
 <!-- toc -->
 
 - [Project Charter](#project-charter)
-	* [Mission](#mission)
 	* [Vision](#vision)
+	* [Mission](#mission)
 	* [Success Criteria](#success-criteria)
 - [Planned Work](#planned-work)
-* [Backlog](#backlog)
-* [Icebox](#icebox)
+* [Project Backlog](#project-backlog)
+* [Project Icebox](#project-icebox)
 
 <!-- tocstop -->
 
@@ -107,7 +107,7 @@ Build a dynamic web application by re-train the model regularly using a dynamic 
 
 - **Story 3**: Output visualizations of features extracted from the URL provided by the user against the distributions of that feature of all the malicious and secure URLs stored in database, This can also give users intuitions on why the URLs they provided are identified as Malicious/Secure.(4 points)
 
-### Backlog
+### Project Backlog
 1. ***Theme1.Epic1.Story1***: Collect URL lists (1 point) - **Planned**
 2. ***Theme1.Epic1.Story2***: Quality check on URL lists (2 points) - **Planned**
 3. ***Theme1.Epic2.Story1***: URL stings' Feature Exploration (4 points) - **Planned**
@@ -123,7 +123,7 @@ Build a dynamic web application by re-train the model regularly using a dynamic 
 13. ***Theme3.Epic1.Story5***: Transfer from Local to Server (4 points)
 14. ***Theme3.Epic2.Story1***: Dynamic URL Database (8 points)
 
-### **Icebox**
+### **Project Icebox**
 1. ***Theme2.Epic1.Story3***: Stacked Model Building (4 points)
 2. ***Theme3.Epic2.Story2***: Secure Webpage Preview (2 points)
 3. ***Theme3.Epic2.Story3***: Output Visualizations to Support Classification Decision (4 points)
