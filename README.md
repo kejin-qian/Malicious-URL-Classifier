@@ -38,7 +38,7 @@ Collect 100 URLs from users and add them into URL database with corresponding cl
 ### **Theme1**: 
 Identify various patterns, text attributes and Host-based features that are hidden in URL strings but could be significant in spotting malicious URLs. 
 
-**Epic1 - Data Acquisition** <*Next Two Weeks*>
+**Epic1 - Data Acquisition** 
 
 A URL database will be first built by collecting a large amount of malicious and secure URLs from various sources.
 
