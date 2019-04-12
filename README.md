@@ -117,7 +117,7 @@ Build a dynamic web application by re-train the model regularly using a dynamic 
 7. ***Theme2.Epic1.Story1***: Classification Model Building and Hyper Parameter Selection (8 points) - **Planned**
 8. ***Theme2.Epic1.Story2***: Final Model Selection (4 points)
 9. ***Theme3.Epic1.Story1***: Front End Design (4 points)
-10. ******Theme3.Epic1.Story2***: Feature Importance Presentaiton (1 point)
+10. ***Theme3.Epic1.Story2***: Feature Importance Presentaiton (1 point)
 11. ***Theme3.Epic1.Story3***: Output Interface Design (4 points)
 12. ***Theme3.Epic1.Story4***: Web App Construction (8 points)
 13. ***Theme3.Epic1.Story5***: Transfer from Local to Server (4 points)
