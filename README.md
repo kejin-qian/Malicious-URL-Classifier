@@ -81,32 +81,29 @@ A set of machine learning predictive models will be built, a 10-fold cross valid
 
 
 ### **Theme3**:
-Deploy an interactive and dynamic web application which takes URL(s) from user and provide Malicious/Secure classification as output with statistics and explanations supporting the decision. Build URL database using the training data and update it with user inputs and corresponding classification results. Re-train the predictive model using latest database in a timely manner. 
+Deploy an interactive and dynamic web application which takes URL(s) from user and provide Malicious/Secure classification as output with statistics and explanations supporting the decision. Build URL database using the training data and update it with user inputs and corresponding classification results. Re-train the predictive model using latest database in a timely manner. Finally create Cloud infrastructure and move App to Cloud.
 
-**Epic1 - User Interface for detecting malicious URLs**
+**Epic1 - Web Application Development and User Experience Design**
 
-Build the Malicious URL Classifier using Flask, which takes single or multiple URL(s) as input and output the classification results and explanations.
+Build the Malicious URL Classifier using Flask and HTML, which takes single or multiple URL(s) as input and output the classification results and explanations. Set up an internal URL database using training data and URLs provided by users for future trainings. Extra interactive functions may be added to the App to improve user experience.
 
-- **Story 1**: Design the front end for user input: User are able to type in single url in text box or check multiple urls by selecting the number of urls they want to test and receive that number of text boxes in return. (4 points)
+- **Story 1**: Design the front end for user input: Users are able to type in single url in text box or check multiple urls by selecting the number of urls they want to test and receive that number of text boxes in return. (4 points)
 
-- **Story 2**: Features used in classification and their importance evaluated by the final best model will be listed and explained on the interface for users’ interests.(1 point)
+- **Story 2**: Output interface design: The classification result ‘Secure’ or ‘Malicious’ will be the primary prediction output from the final best model. For malicious urls, explanations on why it is classified as malicious will be provided as output with the classification result(Examples:existence of @ in subdomain, using IP address to substitute domain, etc). Features used in classification and their importance evaluated by the final best model will be listed and explained on the interface for users’ interests. (4 points)
 
-- **Story 3**: Output interface design: The classification result ‘Secure’ or ‘Malicious’ will be the primary prediction output from the final best model. For malicious urls, explanations on why it is classified as malicious will be provided as output with the classification result(Examples:existence of @ in subdomain, using IP address to substitute domain, etc). (4 points)
+- **Story 3**: Build a dynamic database which can be initialized using training set of the malicious and secure URLs and updated in real time using user input and predicted outcome. The final best model will be re-trained using the updated URL database in a timely manner to improve classification performance and accuracy.(8 points)
 
-- **Story 4**: Build the Malicious URL Classifier web app using tools, libraries and technologies provided by **Flask**.(8 points)
+- **Story 4**: Interactive interface to preview the webpage within the web app if the webpage’s URL is classified as Secure.
 
-- **Story 5**: Setup **Amazon cloud server AWS S3** for file hosting; to store files/information that can’t be stored in a relational database.(4 points)
+- **Story 5**: Output visualizations of features extracted from the URL provided by the user against the distributions of that feature of all the malicious and secure URLs stored in database, This can also give users intuitions on why the URLs they provided are identified as Malicious/Secure.
+
+- **Story 6**: Build the Malicious URL Classifier web app using tools, libraries and technologies provided by **Flask** and **HTML**.(8 points)
 
 
-**Epic2 - More interactive display of Malicious URL Classifier**
+**Epic2 - Final testing and Local to Cloud Transfer**
 
-Build a dynamic web application by re-train the model regularly using a dynamic URL database and output more interactive analyses based on user's input.
+After finishing web application design using Flask and HTML, testing will be implemented on modeling and Web App(user interface) scripts. If all the testings are passed, Web Application will be transferred to Cloud and a final test will be done in the Cloud.(8 points) 
 
-- **Story 1**: Build a dynamic database which can be initialized using training set of the malicious and secure URLs and updated in real time using user input and predicted outcome. The final best model will be re-trained using the updated URL database in a timely manner to improve classification performance and accuracy.(8 points)
-    
-- **Story 2**: Interactive interface to preview the webpage within the web app if the webpage’s URL is classified as Secure.
-
-- **Story 3**: Output visualizations of features extracted from the URL provided by the user against the distributions of that feature of all the malicious and secure URLs stored in database, This can also give users intuitions on why the URLs they provided are identified as Malicious/Secure.
 
 ### Project Backlog
 1. ***Theme1.Epic1.Story1***: Collect URL lists (1 point) - **Finished**
@@ -118,16 +115,15 @@ Build a dynamic web application by re-train the model regularly using a dynamic 
 7. ***Theme2.Epic1.Story1***: Classification Model Building and Hyper Parameter Selection (8 points) - **Planned**
 8. ***Theme2.Epic1.Story2***: Final Model Selection (4 points)
 9. ***Theme3.Epic1.Story1***: Front End Design (4 points)
-10. ***Theme3.Epic1.Story2***: Feature Importance Presentaiton (1 point)
-11. ***Theme3.Epic1.Story3***: Output Interface Design (4 points)
-12. ***Theme3.Epic1.Story4***: Web App Construction (8 points)
-13. ***Theme3.Epic1.Story5***: Transfer from Local to Server (4 points)
-14. ***Theme3.Epic2.Story1***: Dynamic URL Database (8 points)
+10. ***Theme3.Epic1.Story2***: Output Interface Design (4 points)
+11. ***Theme3.Epic1.Story3***: Dynamic URL Database (8 points)
+12. ***Theme3.Epic1.Story6***: Web App Construction (8 points)
+13. ***Theme3.Epic2***: Final Testing and Local to Cloud Transfer (8 points)
 
 ### **Project Icebox**
 1. ***Theme2.Epic1.Story3***: Stacked Model Building
-2. ***Theme3.Epic2.Story2***: Secure Webpage Preview
-3. ***Theme3.Epic2.Story3***: Output Visualizations to Support Classification Decision
+2. ***Theme3.Epic1.Story4***: Secure Webpage Preview
+3. ***Theme3.Epic1.Story5***: Output Visualizations to Support Classification Decision
 
 
 
