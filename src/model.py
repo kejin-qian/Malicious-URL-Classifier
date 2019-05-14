@@ -25,7 +25,7 @@ class Url_Prediction(Base):
     
     __tablename__ = 'url_prediction'
     
-    url = Column(String(100), primary_key=True, unique=True, nullable=False)
+    url = Column(Text, primary_key=True, unique=True, nullable=False)
     
     # def __init__(self, url):
     #     self.url = url
@@ -38,7 +38,7 @@ class Url_features(Base):
     
     __tablename__ = 'url_features'
     
-    url = Column(String, primary_key=True, unique=True, nullable=False)
+    url = Column(Text, primary_key=True, unique=True, nullable=False)
     no_of_dots = Column(Integer, unique= False, nullable=False)
     no_of_hyphen = Column(Integer, unique= False, nullable=False)
     len_of_url = Column(Float, unique= False, nullable=False)
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     engine = create_db(args)
 
     # create engine
-    engine = sql.create_engine(get_engine_string(RDS = True))
+    engine = sql.create_engine(get_engine_string(RDS=args.RDS))
     
     # create a db session
     Session = sessionmaker(bind=engine)  
