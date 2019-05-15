@@ -62,6 +62,17 @@ class Url_features(Base):
 
 
 def get_engine_string(RDS = False):
+    """
+    Get the engine string for RDS, get the path of sqlite database schema if RDS = False.
+
+    Args:
+    RDS(bool): Default False. If False: create the database schema locally in sqlite.
+                              If True: create the database schema in RDS.
+
+    Return:
+    String: An engine_string if RDS = True
+            Path to store sqlite database if RDS = False
+    """
     if RDS:
         conn_type = "mysql+pymysql"
         user = os.environ.get("MYSQL_USER")
@@ -71,7 +82,6 @@ def get_engine_string(RDS = False):
         DATABASE_NAME = 'msia423'
         engine_string = "{}://{}:{}@{}:{}/{}". \
             format(conn_type, user, password, host, port, DATABASE_NAME)
-        # print(engine_string)
         logging.debug("engine string: %s"%engine_string)
         return  engine_string
     else:
@@ -117,13 +127,14 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)  
     session = Session()
 
-    #INPUT user test
+    # insert a new url to url_prediction table for testing
     input_url = Url_Prediction(url = 'www.google.com')
     session.add(input_url)
     session.commit()
 
     logger.info("New user input added")
 
+    # check if the new url was inserted successfully
     query = "SELECT * FROM url_prediction"
     df = pd.read_sql(query, con=engine)
     logger.info(df)
