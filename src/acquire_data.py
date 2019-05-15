@@ -4,7 +4,7 @@ import io
 import urllib.request
 
 """
-Warning: Running acquire_data takes a lot of time, majestic_million.csv ~80Mb
+Warning: Running acquire_data takes several minutes to run, majestic_million.csv ~80Mb
 """
 
 def acquire_data():
