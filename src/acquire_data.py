@@ -4,7 +4,7 @@ import io
 import urllib.request
 
 """
-Warning: Running acquire_data takes a lot of time, majestic_million.csv ~80Mb
+Warning: Running acquire_data takes several minutes to run, majestic_million.csv ~80Mb
 """
 
 def acquire_data():
@@ -40,7 +40,7 @@ def create_project_data():
 	# Load datasets from local
 	URL_good = pd.read_csv('data/GoodURL.csv')
 	URL_bad = pd.read_csv('data/MaliciousURL.csv')
-	urldata = pd.read_csv('GithubURL.csv')
+	urldata = pd.read_csv('data/GithubURL.csv')
 
     # randomly select 10k good urls and 10k malicious urls from both datasets and combine
 	np.random.seed(1)
