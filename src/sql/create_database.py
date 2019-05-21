@@ -109,6 +109,7 @@ def create_db(args,engine=None):
     Base.metadata.create_all(engine)
     logging.info("database created")
 
+    return engine
 
 
 
@@ -121,7 +122,8 @@ if __name__ == "__main__":
     engine = create_db(args)
 
     # create engine
-    engine = sql.create_engine(get_engine_string(RDS=args.RDS))
+    if args.RDS == True:
+        engine = sql.create_engine(get_engine_string(RDS=args.RDS))
     
     # create a db session
     Session = sessionmaker(bind=engine)  
