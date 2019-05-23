@@ -39,8 +39,8 @@ Classify URLs as Malicious or Secure using Machine-Learning predictive models ba
 
 Successfully build a Machine Learning predictive model that dynamically classifies user-provided URL string(s) into Malicious/Secure class(es) with a F-score greater than 0.85 and AUC higher than 0.7. 
 
-Collect 100 URLs from users and add them into URL database with the corresponding classification results. 
-Re-train the predictive model in a timely basis using updated database and achieve better performance metrics.
+Collect 100 URLs from users and add them into URL database with the corresponding classification results. Re-train the predictive model in a timely basis using updated database and achieve better performance metrics.
+Get above 50% of returning users.
 
 
 ## Planned Work
