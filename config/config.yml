@@ -1,0 +1,63 @@
+acquire_data:
+  acquire_data:
+    bad_in: http://data.phishtank.com/data/online-valid.csv
+    good_in: http://downloads.majestic.com/majestic_million.csv
+    git_in: https://raw.githubusercontent.com/incertum/cyber-matrix-ai/master/Malicious-URL-Detection-Deep-Learning/data/url_data_mega_deep_learning.csv
+    bad_out: data/MaliciousURL.csv
+    good_out: data/GoodURL.csv
+    git_out: data/GithubURL.csv
+  create_project_data:
+    bad_in: data/MaliciousURL.csv
+    good_in: data/GoodURL.csv
+    git_in: data/GithubURL.csv
+    project_data_out: data/project_data.csv
+  UploadFile:
+    input_path1: data/MaliciousURL.csv
+    input_path2: data/GoodURL.csv
+    input_path3: data/GithubURL.csv
+    input_path4: data/project_data.csv
+    bucket_name: nw-kejinqian-s3-model
+    output_path1: projectdata/MaliciousURL.csv
+    output_path2: projectdata/GoodURL.csv
+    output_path3: projectdata/GithubURL.csv
+    output_path4: projectdata/project_data.csv
+data_prep:
+  importData:
+    path_in: data/project_data.csv
+    random_state: 0
+  finalizeFeatures:
+    path_out: data/FeatureData.csv
+encoding:
+  readData:
+    saved_filepath_in: data/FeatureData.csv
+  onehotEncoding:
+    encoding_out: model/classes.npy
+    feature_out: data/ModelfeatureSet.csv
+    label_out: data/modelLabel.csv
+training:
+  readData:
+    feature_in: data/ModelfeatureSet.csv
+    label_in: data/modelLabel.csv
+  saveModel:
+    model_out: model/randomForest.pkl
+evaluation:
+  readModel:
+    model_path_in: model/randomForest.pkl
+  readData:
+    feature_in: data/ModelfeatureSet.csv
+    label_in: data/modelLabel.csv
+  ModelEvaluation: 
+    out1: evaluation/ConfusionMatrix.csv
+    out2: image/confusion_matrix.png
+    out3: image/probHist.png
+    out4: image/ROC.png
+    out5: evaluation/Model_evaluation_output.txt
+  featureRank:
+    features_in: data/ModelfeatureSet.csv
+    rank_txt_out: evaluation/feature_rank.txt
+prediction:
+  readModel:
+    model_path_in: model/randomForest.pkl
+  getPrediction:
+    encoding_in: model/classes.npy
+    pred_out: prediction/predicted_class.txt

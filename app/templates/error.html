@@ -1,18 +1,39 @@
+<!-- handle_data.html-->
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="static/basic.css" rel="stylesheet">
-</head>
-
+<html>
+<title>Malicious URL Detector Error Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Verdana">
+<style>
+body,h1 {font-family: "Verdana", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('../static/background3.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+</style>
 <body>
-    <h3>
-         <a href = "{{ url_for('index') }}">Penny Lane Music Recommender</a>
-    </h3>
 
-    <div class="alert alert-danger" role="alert">
-  <p class="alert-link">We're sorry. There was a problem accessing the database. Please try back later. </p>
-    </div>
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-topleft w3-padding-large">
+	<nav>
+	    <a href="/">Home</a>
+	</nav>
+  </div>
+  <div class="w3-display-middle" align="center">
+    <h1 class="w3-jumbo w3-animate-top"><font size="+5"><bold>Maliciou URL Detector</bold></font></h1>
+    <hr class="w3-border-grey" style="margin:auto;width:100%">
+    <p class="w3-large w3-center">This is an invalid URL! Please check and re-enter!</p>
+  	
+  </div>
+  <div class="w3-display-bottomleft w3-padding-large">
+    Developer: Kejin Qian</a>
+  </div>
+</div>
 
 </body>
 </html>
