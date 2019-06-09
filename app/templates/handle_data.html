@@ -1,0 +1,83 @@
+<!-- handle_data.html-->
+<!DOCTYPE html>
+<html>
+<title>Malicious URL Detector Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Verdana">
+<style>
+body,h1 {font-family: "Verdana", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('../static/background3.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+table, th, td {
+  border: 2px solid #F9E79F;
+  border-collapse: collapse;
+}
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-topleft w3-padding-large">
+	<nav>
+	    <a href="/">Home</a>
+	</nav>
+  </div>
+  <div class="w3-display-topright w3-padding-large">
+  <nav>
+      <a href="/About">About</a>
+  </nav>
+  </div>
+  <div class="w3-display-middle" align="center">
+    <h1 class="w3-jumbo w3-animate-top"><font size="+5"><bold>Malicious URL Detector</bold></font></h1>
+    <hr class="w3-border-grey" style="margin:auto;width:100%">
+    <p class="w3-large w3-center">Here's the predicted result for {{ url }}</p>
+    <p class="w3-xlarge w3-center"><mark>{{ result }} </mark></p>
+    <table style="width:100%">
+  <tr>
+    <th>URL</th>
+    <td>{{ url }}</td> 
+  </tr>
+  <tr>
+    <th>Country</th>
+    <td>{{ country }}</td> 
+  </tr>
+  <tr>
+    <th>Create Age(months)</th>
+    <td>{{ createage }}</td> 
+  </tr>
+  <tr>
+    <th>Expiry Age(months)</th>
+    <td>{{ expireage }}</td> 
+  </tr>
+  <tr>
+    <th>Update Age(days)</th>
+    <td>{{ update }}</td> 
+  </tr>
+  <tr>
+    <th>Length of Domain</th>
+    <td>{{ domainlen }}</td> 
+  </tr>
+  <tr>
+    <th>Number of Sub-Domain</th>
+    <td>{{ subdomain }}</td> 
+  </tr>
+
+</table>
+
+<!--     <p class="w3-large w3-center">Predicted Probability of Being Malicious:</p>
+    <p class="w3-large w3-center">{{ prob }}</p> -->
+  	
+  </div>
+  <div class="w3-display-bottomleft w3-padding-large">
+    Developer: Kejin Qian</a>
+  </div>
+</div>
+
+</body>
+</html>

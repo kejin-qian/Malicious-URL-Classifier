@@ -1,14 +1,15 @@
 from app import db
 
 
-class Track(db.Model):
-    """Create a data model for the database to be set up for capturing songs
-
+class URL(db.Model):
+    """
+    Create a data model for the database to be set up for capturing user-input url
     """
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), unique=False, nullable=False)
-    artist = db.Column(db.String(100), unique=False, nullable=False)
-    album = db.Column(db.String(100), unique=False, nullable=True)
+    url = db.Column(db.String(500), unique=False, nullable=False)
+    pred = db.Column(db.Integer, unique=False, nullable=False)
+
 
     def __repr__(self):
-        return '<Track %r>' % self.title
+        return '<URL address %r>' % self.url
+
