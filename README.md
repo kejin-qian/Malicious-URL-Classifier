@@ -15,12 +15,13 @@
 - [Repo structure](#repo-structure)
 - [Documentation](#documentation)
 - [Running the application](#running-the-application)
+  *[0. Clone the project repo to local](#clone-project-repo)
   * [1. Set up environment](#1-set-up-environment)
-    + [With `virtualenv` and `pip`](#with-virtualenv-and-pip)
-    + [With `conda`](#with-conda)
-  * [2. Configure Flask app](#2-configure-flask-app)
-  * [3. Initialize the database](#3-initialize-the-database)
-  * [4. Run the application](#4-run-the-application)
+  * [2. Reproduce the whole pipeline](#2-reproduce-pipeline)
+  * [3. Configure Flask app](#3-configure-flask-app)
+  * [4. Initialize the database](#4-initialize-the-database)
+  * [5. Run the application](#5-run-the-application)
+  * [6. Interact with the application](#6-interaction-with-app)
 - [Testing](#testing)
 
 <!-- tocstop -->
@@ -39,8 +40,8 @@ Classify URLs as Malicious or Secure using Machine-Learning predictive models ba
 
 Successfully build a Machine Learning predictive model that dynamically classifies user-provided URL string(s) into Malicious/Secure class(es) with a F-score greater than 0.85 and AUC higher than 0.7. 
 
-Collect 100 URLs from users and add them into URL database with the corresponding classification results. Re-train the predictive model in a timely basis using updated database and achieve better performance metrics.
-Get above 50% of returning users.
+Collect 100 URLs from users and add them into URL database with the corresponding classification results. 
+Re-train the predictive model in a timely basis using updated database and achieve better performance metrics.
 
 
 ## Planned Work
@@ -53,7 +54,7 @@ Identify various patterns, text attributes and Host-based features that are hidd
 
 A URL database will be first built by collecting a large amount of malicious and secure URLs from various sources.
 
-- **Story 1**: Aggregate lists of verified malicious urls from [Phishtank] (https://www.phishtank.com/) and lists of secure urls from various URL whitelist databases.(1 point)
+- **Story 1**: Aggregate lists of verified malicious urls from [Phishtank](https://www.phishtank.com/) and lists of secure urls from various URL whitelist databases.(1 point)
     
 - **Story 2**: Implement quality check on aggregated URL lists. In order to be prepared for any kinds of urls user may type in, comprehensive selections of URL types, lengths, extension are desired. Manually add extra urls if lack of any kind of urls is noticed. (2 points)
 
@@ -194,95 +195,111 @@ This project structure was partially influenced by the [Cookiecutter Data Scienc
 * See `docs/README.md` for keeping docs up to date with additions to the repository.
 
 ## Running the application 
+
+### 0. Clone the project repo to local
+```
+git clone https://github.com/kejin-qian/Malicious-URL-Classifier.git
+```
+
 ### 1. Set up environment 
+The `requirements.txt` file contains the packages required to run the model code. An environment can be set up after you cd to the repo path. 
 
-The `requirements.txt` file contains the packages required to run the model code. An environment can be set up in two ways. See bottom of README for exploratory data analysis environment setup. 
-
-#### With `virtualenv`
-
+#### (a). With `conda`
 ```bash
-pip install virtualenv
-
-virtualenv pennylane
-
-source pennylane/bin/activate
-
+conda create -n URL_Classifier python=3.6
+conda activate URL_Classifier
 pip install -r requirements.txt
-
-```
-#### With `conda`
-
-```bash
-conda create -n pennylane python=3.7
-conda activate pennylane
-pip install -r requirements.txt
-
 ```
 
-### 2. Configure Flask app 
+#### (b). Install python.app
+To make sure all packages (especially matplotlib and seaborn) to work properly, please install python.app using the following command.
+```bash
+conda install python.app
+```
+After installing python.app, please use ```pythonw``` instead of ```python``` when run python scripts
 
-`config.py` holds the configurations for the Flask app. It includes the following configurations:
+### 2. Reproduce the whole pipeline
+Before reproducing the project, please ensure that you have configured your AWS account by adding your credentials by ```aws configure```
+Reproduce the project pipeline from acquiring source datasets from websites to making a single prediction.
+The feature generation step ```data_prep.py``` takes a huge amount of time to query WHOIS server to acquire domain-related features. 
 
+So currently, after cd to the cloned repo folder, running 
+
+```make all``` 
+
+in terminal can reproduce the pipeline by only generating features for the first 50 urls and build the model and make predictions based on these 50 urls. 
+* All the source datasets downloaded will be saved to my public S3 bucket. 
+* If you want to change the paths where all files, images, models will be saved to, please change the paths in ```config/config.yml```
+
+You can choose how many urls you want to use to generate features by changing the ```opt_length``` arugument in line 9 ```pythonw src/data_prep.py --config=config/config.yml --opt_length=50``` in the ```makefile```. You can also choose to generate features for the whole URL dataset which contains more than 47,000 urls by changing line 9 to ```pythonw src/data_prep.py --config=config/config.yml```. 
+* Generating features for the complete URL dataset needs about 8 hours. 
+
+To run the rest of the pipeline(data cleaning, model training, evaluation and prediction) on the full dataset, please do the following (assume you have run ```make all``` and reproduced the pipeline using a subset of the urls 50 or a number of your choice)
+
+```bash
+# delete the files generated by running the whole pipeline using 50 urls, only keep source datasets in the data folder so that after downloading the full feature set from my S3 bucket, you can continue to run the rest of the pipeline
+
+make clean-files
+
+# download the complete feature set from my public S3 bucket
+
+pythonw src/download_file.py --path_of_object_to_download=ProjectData/Complete_Feature_Set.csv --bucket_name=nw-kejinqian-s3 --output_file_path=data/FeatureData.csv
+
+# reproduce the encoding step on the full feature data
+make encoding
+
+# reproduce model training step
+make training
+
+# reproduce model evaluation step
+make evaluation
+
+# reproduce the prediction step 
+make prediction
+```
+
+### 3. Configure Flask app
+`config.py` in the cloned repo folder holds the configurations for the Flask app. It includes the following configurations:
 ```python
 DEBUG = True  # Keep True for debugging, change to False when moving to production 
 LOGGING_CONFIG = "config/logging/local.conf"  # Path to file that configures Python logger
-PORT = 3002  # What port to expose app on 
-SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/tracks.db'  # URI for database that contains tracks
-
+PORT = 3000  # What port to expose app on 
+SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/url.db'  # URI for database that contains user input url and prediction result
 ```
 
-* You will need to update the `PORT` configuration to your assigned port when deploying on the MSiA server (reach out to the instructors if you have not been assigned one)
-
-* The configuration currently says to save the database to a temporary location as it is just for testing. However, if you are not on your local machine, you may have issues with this location and should change it to a location within your home directory, where you have full permissions. To change it to saving in the data directory within this repository, run the Python code from this directory and change the `config.py` to say:
-
-```python
-SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/tracksB.db'
-```
-
-The three `///` denote that it is a relative path to where the code is being run (which is from `src/add_songs.py`). 
-
-You can also define the absolute path with four `////`:
-
-```python
-SQLALCHEMY_DATABASE_URI = 'sqlite:////Users/chloemawer/repos/MSIA423-example-project-repo-2019/data/tracks.db'
-```
-
-### 3. Initialize the database 
-
-To create the database in the location configured in `config.py` with one initial song, run: 
-
-`python run.py create --artist=<ARTIST> --title=<TITLE> --album=<ALBUM>`
-
-To add additional songs:
-
-`python run.py ingest --artist=<ARTIST> --title=<TITLE> --album=<ALBUM>`
-
-
-### 4. Run the application 
- 
- ```bash
- python app.py 
+### 4. Initialize the database
+To create the database in the location configured in `config.py`, cd to the cloned repo folder, run:
+ ```python
+pythonw create_db.py
  ```
 
-### 5. Interact with the application 
+### 5. Run the application
+cd to cloned repo folder first
+if you want to run the app locally and create the database locally using sqlite db, keep the following line uncommented in config.py and comment out the line SQLALCHEMY_DATABASE_URI="{conn_type}://{user}:{password}@{host}:{port}/{DATABASE_NAME}
+ ```bash
+SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/url.db'
+ ```
 
-a. On your computer - go to [http://127.0.0.1:3000/](http://127.0.0.1:3000/) to interact with the current version of the app. 
+if you want to run on RDS, first make sure your your RDS is configured in the environment, then uncomment the following line in config.py and comment out the line SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/url.db
+ ```bash
+SQLALCHEMY_DATABASE_URI="{conn_type}://{user}:{password}@{host}:{port}/{DATABASE_NAME}"
+ ```
 
-b. On the MSiA server:  when deploying the web app on the MSiA server you will need to run the following command **on your computer** (not on the server) before you can see the web app (you might be prompted for you NUIT password):
-
+Then you can run the app by
 ```bash
-ssh -L $USER_PORT:127.0.0.1:$USER_PORT $NUIT_USER@msia423.analytics.northwestern.edu
-```
+pythonw application.py 
+ ```
 
-* Replace the variable `$USER_PORT` with your assigned MSiA server port (reach out to the instructors if you have not been assigned one) and
-`$NUIT_USER` with your NUIT username. An example: `ssh -L 3000:127.0.0.1:9000 fai3458@msia423.analytics.northwestern.edu` (We use the same port number for both the remote and local ports for convenience)
+### 6. Interact with the application 
+Go to http://3.18.102.108:3000/ to interact with the current version of the application. 
 
-* Go to `http:127.0.0.1:$USER_PORT` to interact with the app. 
 
 ## Testing 
+cd to the cloned repo folder, run the following command line in terminal
+```
+pythonw -m pytest test/tester.py
+```
 
-Run `pytest` from the command line in the main project repository. 
+Tests and datasets used for testing are stored in the test folder.
 
-
-Tests exist in `test/test_helpers.py`
 
