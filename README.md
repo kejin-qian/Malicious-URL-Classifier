@@ -295,9 +295,10 @@ Go to http://3.18.102.108:3000/ to interact with the current version of the appl
 
 
 ## Testing 
-cd to the cloned repo folder, run the following command line in terminal
+cd to the cloned repo folder, run the following command lines in terminal
 ```
 pythonw -m pytest test/tester.py
+pythonw -m pytest test/test_feature_generation.py
 ```
 
 Tests and datasets used for testing are stored in the test folder.
