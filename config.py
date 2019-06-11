@@ -13,12 +13,12 @@ host = os.environ.get("MYSQL_HOST")
 port = os.environ.get("MYSQL_PORT")
 DATABASE_NAME = 'msia423'
 
-#SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/url.db'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/url.db'
 
 # local: export SQLALCHEMY_DATABASE_URI='sqlite:///data/database/churn_prediction.db'
 # rds: export SQLALCHEMY_DATABASE_URI="{conn_type}://{user}:{password}@{host}:{port}/{DATABASE_NAME}"
 
-SQLALCHEMY_DATABASE_URI = "{}://{}:{}@{}:{}/{}".format(conn_type, user, password, host, port, DATABASE_NAME)
+#SQLALCHEMY_DATABASE_URI = "{}://{}:{}@{}:{}/{}".format(conn_type, user, password, host, port, DATABASE_NAME)
 
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 HOST = "0.0.0.0"
