@@ -508,34 +508,39 @@ def getPrediction(model, featureSet, encoding_in, pred_out):
 
     # load the one-hot encoding schema used in training
     # one-hot encoding country and file extension 
-    le = preprocessing.LabelEncoder()
-    le.classes_ = np.load(encoding_in, allow_pickle=True) 
-    featureSet['country'] = le.fit_transform(featureSet['country'])
-    featureSet['file extension'] = le.fit_transform(featureSet['file extension'])
-    logger.info('One-hot encoding has been done on country and file extension columns')
-    
-    # make class prediction
-    y_pred_class = model.predict(featureSet.drop(['url', 'len of url', 'no of subdir'], axis = 1))
-    # find the associated predicted probability
-    y_pred_prob = model.predict_proba(featureSet.drop(['url', 'len of url', 'no of subdir'], axis = 1))
+    try:
+        le = preprocessing.LabelEncoder()
+        le.classes_ = np.load(encoding_in, allow_pickle=True) 
+        featureSet['country'] = le.fit_transform(featureSet['country'])
+        featureSet['file extension'] = le.fit_transform(featureSet['file extension'])
+        logger.info('One-hot encoding has been done on country and file extension columns')
+        
+        # make class prediction
+        y_pred_class = model.predict(featureSet.drop(['url', 'len of url', 'no of subdir'], axis = 1))
+        # find the associated predicted probability
+        y_pred_prob = model.predict_proba(featureSet.drop(['url', 'len of url', 'no of subdir'], axis = 1))
 
-    y_pred_str = ''
+        y_pred_str = ''
 
-    # use a classification threshold of 0.6
-    if y_pred_prob[0][1] >= 0.6:
-        y_pred_str = 'The url is malicious.'
-        y_pred_binary = 1
+        # use a classification threshold of 0.6
+        if y_pred_prob[0][1] >= 0.6:
+            y_pred_str = 'The url is malicious.'
+            y_pred_binary = 1
 
-    else:
-        y_pred_str = 'The url is benign.'
-        y_pred_binary = 0
+        else:
+            y_pred_str = 'The url is benign.'
+            y_pred_binary = 0
 
-    # write the prediction result to text file
-    with open(pred_out,'w') as file:
-        file.write(y_pred_str)
+        # write the prediction result to text file
+        with open(pred_out,'w') as file:
+            file.write(y_pred_str)
 
-    logger.info('prediction result saved to the prediction folder.')
-    return(y_pred_str, y_pred_prob[0][1], y_pred_binary)
+        logger.info('prediction result saved to the prediction folder.')
+        return(y_pred_str, y_pred_prob[0][1], y_pred_binary)
+
+    except FileNotFoundError:
+        logger.debug('Encoding class not found!')
+        raise Exception('Encoding class not found!')
 
 def run_prediction(args):
     with open(args.config, 'r') as f:

@@ -21,4 +21,4 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///../data/url.db'
 #SQLALCHEMY_DATABASE_URI = "{}://{}:{}@{}:{}/{}".format(conn_type, user, password, host, port, DATABASE_NAME)
 
 SQLALCHEMY_TRACK_MODIFICATIONS = True
-HOST = "0.0.0.0"
+HOST = "127.0.0.1"

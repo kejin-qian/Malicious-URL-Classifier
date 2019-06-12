@@ -31,20 +31,24 @@ def importData(path_in, random_state):
         URLdata(Pandas.DataFrame): Project dataset in Pandas DataFrame form
     """
     # load data in
-    URLdata = pd.read_csv(path_in, index_col=0)
-    # shuffle the dataset with a random state specified
-    URLdata = URLdata.sample(frac=1, random_state = random_state).reset_index(drop=True)
+    try:
+        URLdata = pd.read_csv(path_in, index_col=0)
+        # shuffle the dataset with a random state specified
+        URLdata = URLdata.sample(frac=1, random_state = random_state).reset_index(drop=True)
 
-    logging.info('top 5 rows of data:\n {}'.format(URLdata.head()))
-    logging.info('shape of data: {}'.format(URLdata.shape))
-    logging.info('There are {} rows in the data'.format(len(URLdata)))
+        logging.info('top 5 rows of data:\n {}'.format(URLdata.head()))
+        logging.info('shape of data: {}'.format(URLdata.shape))
+        logging.info('There are {} rows in the data'.format(len(URLdata)))
 
-    # find the dataset balance
-    spam = len(URLdata[URLdata['label']==1])
-    percent_spam = spam/len(URLdata)*100
-    logging.info('There are {}  in the data'.format(len(URLdata)))
+        # find the dataset balance
+        spam = len(URLdata[URLdata['label']==1])
+        percent_spam = spam/len(URLdata)*100
+        logging.info('There are {}  in the data'.format(len(URLdata)))
 
-    return URLdata
+        return URLdata
+    except FileNotFoundError:
+        logger.debug('File not found!')
+        raise Exception('File not found!')
 
 
 def countdots(url): 

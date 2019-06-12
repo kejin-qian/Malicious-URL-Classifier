@@ -36,10 +36,14 @@ def readData(feature_in, label_in):
         X(numpy.ndarray): final feature set
         y(numpy.ndarray): final label set
     """
-    X = pd.read_csv(feature_in, index_col = 0).values
-    y = pd.read_csv(label_in, header = None, index_col = 0).values
-    logger.info('Feature and Label sets have been loaded in.')
-    return X, y
+    try:
+        X = pd.read_csv(feature_in, index_col = 0).values
+        y = pd.read_csv(label_in, header = None, index_col = 0).values
+        logger.info('Feature and Label sets have been loaded in.')
+        return X, y
+    except FileNotFoundError:
+        logger.debug('File not found!')
+        raise Exception('File not found!')
 
 def splitData(X, y, test_size, random_state):
     """

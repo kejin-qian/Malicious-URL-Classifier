@@ -2,6 +2,7 @@ import pandas as pd
 import sys
 sys.path.append('../')
 import os
+import unittest
 
 import src.data_prep as dp
 import src.encoding as ec
@@ -36,66 +37,85 @@ feature_test_url = pred.generateFeature(url)
 pred.getPrediction(RF_test, feature_test_url, 'test/test_classes.npy', 'test/test_pred.txt')
 
 
-def test_data_prep_importData():
-	"""Test import data function from data_prep module.
-	Check whether a pandas dataframe is formed and whether u
-	the dataframe has the correct shape (31,3) (including one index column)"""
+class MyTestCase(unittest.TestCase):
 
-	
-	assert isinstance(url_test, pd.DataFrame)
-	
-	assert url_test.shape == (31,2)
-	
-	
-def test_data_prep_generate_finalize():
-	"""Test generateFeature and finanlizeFeatures from data_prep module
-	Check whether a pandas dataframe is formed and whether 
-	the dataframe has the correct shape (31,20) (including one index column)"""
-	
-	assert isinstance(feature_test, pd.DataFrame)
-	
-	# line 13 when we read the csv created, column 0 is set to be index column
-	# so the shape we would expect in this test would be (31, 19)
-	expected_shape = (31, 20-1)
-	assert feature_test.shape == (31,19)
-	
+	def test_data_prep_importData(self):
+		"""Test import data function from data_prep module.
+		Check whether a pandas dataframe is formed and whether u
+		the dataframe has the correct shape (31,3) (including one index column)"""
 
-def test_encoding():
-	"""Test onehotEncoding from encoding module
-	Check whether the encoded feature set has the correct shape (31,16),
-	including one index column"""
-	
-	# line 13 when we read the csv created, column 0 is set to be index column
-	# so the shape we would expect in this test would be (31, 15)
-	assert encoded_feature_test.shape == (31,15)
+		
+		self.assertTrue(isinstance(url_test, pd.DataFrame))
+		
+		self.assertEqual(url_test.shape,(31,2))
 
-def test_training_read():
-	"""Test readData from the training module"""
-	# shape expected to be (31,15) & (31,1)
-	assert X.shape == (31,15)
-	assert y.shape == (31,1)
-	
+		with self.assertRaises(Exception) as context:
+			dp.importData('test/data_not_exist.csv',0)
+		self.assertTrue('File not found!' in str(context.exception))
+		
+	def test_data_prep_generate_finalize(self):
+		"""Test generateFeature and finanlizeFeatures from data_prep module
+		Check whether a pandas dataframe is formed and whether 
+		the dataframe has the correct shape (31,20) (including one index column)"""
+		
+		self.assertTrue(isinstance(feature_test, pd.DataFrame))
+		
+		# line 13 when we read the csv created, column 0 is set to be index column
+		# so the shape we would expect in this test would be (31, 19)
+		expected_shape = (31, 20-1)
+		self.assertEqual(feature_test.shape,(31,19))
+		
 
-def test_training_save():
-	"""Test trainModel and saveModel from training.py"""
-	assert os.path.isfile('test/test_model.pkl') == True
-	
-def test_evaluation_read():
-	"""Test whether the model is read in for evaluation correctly"""
-	assert isinstance(RF_test, object)
-	
-def test_prediction():
-	"""Test whether the the prediction module generate valid result"""
-	result = None
-	with open('test/test_pred.txt', 'r') as f:
-		result = f.readlines()
-	f.close()
-	assert os.path.isfile('test/test_pred.txt') == True
-	# the result should only contain one line
-	assert len(result) == 1
+	def test_encoding(self):
+		"""Test onehotEncoding from encoding module
+		Check whether the encoded feature set has the correct shape (31,16),
+		including one index column"""
+		
+		# line 13 when we read the csv created, column 0 is set to be index column
+		# so the shape we would expect in this test would be (31, 15)
+		self.assertEqual(encoded_feature_test.shape,(31,15))
 
-	
-	
+
+	def test_training_read(self):
+		"""Test readData from the training module"""
+		# shape expected to be (31,15) & (31,1)
+		self.assertEqual(X.shape,(31,15))
+		self.assertEqual(y.shape,(31,1))
+		
+		with self.assertRaises(Exception) as context:
+			train.readData('test/not_exist1.csv', 'test/not_exist2.csv')
+		self.assertTrue('File not found!' in str(context.exception))
+
+	def test_training_save(self):
+		"""Test trainModel and saveModel from training.py"""
+		self.assertTrue(os.path.isfile('test/test_model.pkl'))
+
+		
+	def test_evaluation_read(self):
+		"""Test whether the model is read in for evaluation correctly"""
+		self.assertTrue(isinstance(RF_test, object))
+
+		with self.assertRaises(Exception) as context:
+			eva.readModel('test/model_exist.pkl')
+		self.assertTrue('File not found!' in str(context.exception))
+		
+	def test_prediction(self):
+		"""Test whether the the prediction module generate valid result"""
+		result = None
+		with open('test/test_pred.txt', 'r') as f:
+			result = f.readlines()
+		f.close()
+		self.assertTrue(os.path.isfile('test/test_pred.txt'))
+		# the result should only contain one line
+		self.assertEqual(len(result),1)
+
+		with self.assertRaises(Exception) as context:
+			pred.getPrediction(RF_test, feature_test_url, 'test/test_classes_not_exist.npy', 'test/test_pred.txt')
+		self.assertTrue('Encoding class not found!' in str(context.exception))
+
+		
+if __name__ == '__main__':
+	unittest.mian()
 	
 
 

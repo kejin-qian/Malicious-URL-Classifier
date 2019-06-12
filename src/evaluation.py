@@ -31,9 +31,13 @@ def readModel(model_path_in):
     """
     Read the trained model in.
     """
-    with open(model_path_in, "rb") as f:
-        RF = pkl.load(f)
-    return RF
+    try:
+        with open(model_path_in, "rb") as f:
+            RF = pkl.load(f)
+        return RF
+    except FileNotFoundError:
+        logger.debug('File not found!')
+        raise Exception('File not found!')
 
 def readData(feature_in, label_in):
     """
