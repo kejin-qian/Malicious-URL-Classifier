@@ -117,13 +117,13 @@ After finishing web application design using Flask and HTML, testing will be imp
 
 
 ### Project Backlog
-1. ***Theme1.Epic1.Story1***: Collect URL lists (1 point) - **Finished**
-2. ***Theme1.Epic1.Story2***: Quality check on URL lists (2 points) - **Finished**
-3. ***Theme1.Epic2.Story1***: URL stings' Feature Exploration (4 points) - **Planned**
-4. ***Theme1.Epic2.Story2***: Host-based feature from WHOIS Server (4 points) - **Finished**
-5. ***Theme1.Epic2.Story3***: Visualizations on features' distributions for Malicious&Secure URLs (2 points) - **Planned**
-6. ***Theme1.Epic3.Story1***: Exploratory Data Analysis (4 points) - **Planned**
-7. ***Theme2.Epic1.Story1***: Classification Model Building and Hyper Parameter Selection (8 points) - **Planned**
+1. ***Theme1.Epic1.Story1***: Collect URL lists (1 point) 
+2. ***Theme1.Epic1.Story2***: Quality check on URL lists (2 points) 
+3. ***Theme1.Epic2.Story1***: URL stings' Feature Exploration (4 points) 
+4. ***Theme1.Epic2.Story2***: Host-based feature from WHOIS Server (4 points) 
+5. ***Theme1.Epic2.Story3***: Visualizations on features' distributions for Malicious&Secure URLs (2 points)
+6. ***Theme1.Epic3.Story1***: Exploratory Data Analysis (4 points) 
+7. ***Theme2.Epic1.Story1***: Classification Model Building and Hyper Parameter Selection (8 points) 
 8. ***Theme2.Epic1.Story2***: Final Model Selection (4 points)
 9. ***Theme3.Epic1.Story1***: Front End Design (4 points)
 10. ***Theme3.Epic1.Story2***: Output Interface Design (4 points)
