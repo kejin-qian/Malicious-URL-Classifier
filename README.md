@@ -15,13 +15,13 @@
 - [Repo structure](#repo-structure)
 - [Documentation](#documentation)
 - [Running the application](#running-the-application)
-  * [0. Clone the project repo to local](#0-clone-project-repo)
+  * [0. Clone the project repo to local](#0-clone-the-project-repo-to-local)
   * [1. Set up environment](#1-set-up-environment)
-  * [2. Reproduce the whole pipeline](#2-reproduce-pipeline)
+  * [2. Reproduce the whole pipeline](#2-reproduce-the-whole-pipeline)
   * [3. Configure Flask app](#3-configure-flask-app)
   * [4. Initialize the database](#4-initialize-the-database)
   * [5. Run the application](#5-run-the-application)
-  * [6. Interact with the application](#6-interaction-with-app)
+  * [6. Interaction with app](#6-interaction-with-app)
 - [Testing](#testing)
 
 <!-- tocstop -->
