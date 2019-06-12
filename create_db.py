@@ -9,7 +9,7 @@ configuration parameter in __init__.py with the schema defined by models.URL()
 
 def create_db():
 	db.create_all()
-	print('db created')
+	print('database created')
 
 if __name__ == "__main__":
 	create_db()
