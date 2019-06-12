@@ -280,9 +280,11 @@ pythonw application.py
 
 ### 6. Interact with the application 
 - Local with SQLite
+
 Go to http://127.0.0.1:3000/ to interact with the current version of the application.
 
 - EC2 with RDS
+
 Go to http://3.18.102.108:3000/ to interact with the current version of the application. 
 
 
