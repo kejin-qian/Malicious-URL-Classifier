@@ -1,4 +1,6 @@
-# This folder will be used to store model evaluation results
+# Evaluation Folder
+
+This folder will be used to store model evaluation results
 
 - 1. ConfusionMatrix.csv
 - 2. feature_rank.txt
