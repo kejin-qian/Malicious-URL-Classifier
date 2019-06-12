@@ -15,7 +15,7 @@
 - [Repo structure](#repo-structure)
 - [Documentation](#documentation)
 - [Running the application](#running-the-application)
-  *[0. Clone the project repo to local](#clone-project-repo)
+  * [0. Clone the project repo to local](#clone-project-repo)
   * [1. Set up environment](#1-set-up-environment)
   * [2. Reproduce the whole pipeline](#2-reproduce-pipeline)
   * [3. Configure Flask app](#3-configure-flask-app)
@@ -98,11 +98,11 @@ Deploy an interactive and dynamic web application which takes URL(s) from user a
 
 Build the Malicious URL Classifier using Flask and HTML, which takes single or multiple URL(s) as input and output the classification results and explanations. Set up an internal URL database using training data and URLs provided by users for future trainings. Extra interactive functions may be added to the App to improve user experience.
 
-- **Story 1**: Design the front end for user input: Users are able to type in single url in text box or check multiple urls by selecting the number of urls they want to test and receive that number of text boxes in return. (4 points)
+- **Story 1**: Design the front end for user input: Users are able to type in a single url in text box and receive the predicted output in return. (4 points)
 
-- **Story 2**: Output interface design: The classification result ‘Secure’ or ‘Malicious’ will be the primary prediction output from the final best model. For malicious urls, explanations on why it is classified as malicious will be provided as output with the classification result(Examples:existence of @ in subdomain, using IP address to substitute domain, etc). Features used in classification and their importance evaluated by the final best model will be listed and explained on the interface for users’ interests. (4 points)
+- **Story 2**: Output interface design: The classification result ‘Secure’ or ‘Malicious’ will be the primary prediction output from the final best model. Detailed information(Number of subdomain, Create age, Update age, etc) about the url tested will be provided also in the output page, for example, important or critical features evaluated by the optimal model. (4 points)
 
-- **Story 3**: Build a dynamic database which can be initialized using training set of the malicious and secure URLs and updated in real time using user input and predicted outcome. The final best model will be re-trained using the updated URL database in a timely manner to improve classification performance and accuracy.(8 points)
+- **Story 3**: All the user input urls and the corresponding predictions will be automatically saved to local sqlite database or RDS depending on the development needs.(4 points)
 
 - **Story 4**: Interactive interface to preview the webpage within the web app if the webpage’s URL is classified as Secure.
 
@@ -127,7 +127,7 @@ After finishing web application design using Flask and HTML, testing will be imp
 8. ***Theme2.Epic1.Story2***: Final Model Selection (4 points)
 9. ***Theme3.Epic1.Story1***: Front End Design (4 points)
 10. ***Theme3.Epic1.Story2***: Output Interface Design (4 points)
-11. ***Theme3.Epic1.Story3***: Dynamic URL Database (8 points)
+11. ***Theme3.Epic1.Story3***: Dynamic URL Database (4 points)
 12. ***Theme3.Epic1.Story6***: Web App Construction (8 points)
 13. ***Theme3.Epic2***: Final Testing and Local to Cloud Transfer (8 points)
 
