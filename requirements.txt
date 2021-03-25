@@ -33,7 +33,7 @@ pytest==4.0.1
 python-dateutil==2.8.0
 python-whois==0.7.1
 pytz==2019.1
-PyYAML==5.1
+PyYAML==5.4
 requests==2.22.0
 requests-file==1.4.3
 s3transfer==0.2.0
